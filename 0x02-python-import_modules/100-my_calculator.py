@@ -9,6 +9,7 @@ if __name__ == "__main__":
         a = int(argv[1])
         operator = argv[2]
         b = int(argv[3])
+    else:
         if operator == '+':
             print(f"{a} {operator} {b} = {add(a, b)}")
         elif operator == '-':
