@@ -3,12 +3,14 @@ if __name__ == "__main__":
     from calculator_1 import add, sub, mul, div
     from sys import argv
 
-    if len(argv) != 4:
+    args_count = len(argv) 
+
+    if args_count != 4:
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         exit(1)
 
         a = int(argv[1])
-        operator = int(argv[2])
+        operator = argv[2]
         b = int(argv[3])
 
         if operator == '+':
