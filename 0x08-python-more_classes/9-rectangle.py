@@ -83,7 +83,6 @@ class Rectangle:
         """
         return (cls(size, size))
 
-
     def __str__(self):
         """return a print of the rectangle with the character #"""
         if self.__width == 0 or self.__height == 0:
