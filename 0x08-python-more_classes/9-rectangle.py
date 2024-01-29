@@ -81,7 +81,7 @@ class Rectangle:
         Args:
             size: the width and the height of the new rectangle
         """
-        return (cls(size, size))
+        return (cls(width=size, height=size))
 
     def __str__(self):
         """return a print of the rectangle with the character #"""
