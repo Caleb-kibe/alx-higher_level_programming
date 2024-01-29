@@ -9,7 +9,7 @@ class Rectangle:
         print_symbol: symbol used to represent a string
     """
     number_of_instances = 0
-    print_symbol = '#'
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         """initialize a new rectangle
@@ -64,7 +64,7 @@ class Rectangle:
 
         rect_str = []
         for i in range(self.__height):
-            [rect_str.append('#') for j in range(self.__width)]
+            [rect_str.append(str(self.print_symbol)) for j in range(self.__width)]
             if i != self.__height - 1:
                 rect_str.append("\n")
         return ("".join(rect_str))
