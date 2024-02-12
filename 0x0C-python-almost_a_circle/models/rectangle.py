@@ -11,6 +11,11 @@ class Rectangle(Base):
             height (int): height of the rectangle
             x (int): x coordinate of the rectangle
             y (int): y coordinate of the rectangle
+        Raises:
+            TypeError: if width or height is not an int.
+            ValueError: ifwidth or height <= 0.
+            TypeError: if x or y is not an int.
+            ValueError: if x or y < 0.
         """
         super().__init__(id)
         self.width = width
@@ -133,6 +138,16 @@ class Rectangle(Base):
                     self.x = v
                 elif k == "y":
                     self.y = v
+
+    def to_dictionary(self):
+        """Return the dictionary representation of a Rectangle."""
+        return {
+            "id": self.id,
+            "width": self.width,
+            "height": self.height,
+            "x": self.x,
+            "y": self.y
+        }
 
     def __str__(self):
         """override the str method to return a formated
