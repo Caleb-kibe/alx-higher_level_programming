@@ -13,10 +13,10 @@ class Rectangle(Base):
             y (int): y coordinate of the rectangle
         """
         super().__init__(id)
-        self.__width = width
-        self.__height= height
-        self.__x = x
-        self.__y = y
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
     @property
     def width(self):
@@ -26,8 +26,11 @@ class Rectangle(Base):
     @width.setter
     def width(self, value):
         """sets the width of the rectangle"""
-        if isinstance(value, int) and value > 0:
-            self.__width = value
+        if type(value) != int:
+            raise TypeError("width must be an integer")
+        if value <= 0:
+            raise ValueError("width must be > 0")
+        self.__width = value
 
     @property
     def height(self):
@@ -37,8 +40,11 @@ class Rectangle(Base):
     @height.setter
     def height(self, value):
         """set the height of the rectangle"""
-        if isinstance(value, int) and value > 0:
-            self.__height = value
+        if type(value) != int:
+            raise TypeError("height must be an integer")
+        if value <= 0:
+            raise ValueError("height must be >= 0")
+        self.__height = value
 
     @property
     def x(self):
@@ -48,8 +54,11 @@ class Rectangle(Base):
     @x.setter
     def x(self, value):
         """sets the value of x"""
-        if isinstance(value, int) and value > 0:
-            self.__x = x
+        if value < 0:
+            raise ValueError("x must be >= 0")
+        if type(value) != int:
+            raise TypeError("x must be an integer")
+        self.__x = value
 
     @property
     def y(self):
@@ -59,5 +68,73 @@ class Rectangle(Base):
     @y.setter
     def y(self, value):
         """sets the value of y"""
-        if isinstance(value, int) and value > 0:
-            self.__y = y
+        if value < 0:
+            raise ValueError("y must be >= 0")
+        if type(value) != int:
+            raise TypeError("y must be an integer")
+        self.__y = value
+
+    def area(self):
+        """calculates and returns the area of the rectangle"""
+        return (self.__height * self.__width)
+
+    def display(self):
+        """prints the rectangle to the stdout with the character #"""
+        if self.height == 0 or self.width == 0:
+            print("")
+            return
+        [print("") for y in range(self.y)]
+        for h in range(self.height):
+            [print(" ", end="") for x in range(self.x)]
+            [print("#", end="") for w in range(self.width)]
+            print("")
+
+    def update(self, *args, **kwargs):
+        """updates the rectangle attribute with each assigned argument
+        Args:
+            *args (tuple): new attribute values
+                arg[0] (int): new id
+                arg[1] (int): new width
+                arg[2] (int): new height
+                arg[3] (int): new x coordinate
+                arg[4] (int): new y coordinate
+            **kwargs (dict): new key/value pairs of the new attribute values
+        """
+        if args and len(args) != 0:
+            a = 0
+            for arg in args:
+                if a == 0:
+                    if arg is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = arg
+                elif a == 1:
+                    self.width = arg
+                elif a == 2:
+                    self.height = arg
+                elif a == 3:
+                    self.x = arg
+                elif a == 4:
+                    self.y = arg
+                a += 1
+
+        elif kwargs and len(kwargs) != 0:
+            for k, v in kwargs.items():
+                if k == "id":
+                    if v is None:
+                        self.__init__(self.width, self.height, self.x, self.y)
+                    else:
+                        self.id = v
+                elif k == "width":
+                    self.width = v
+                elif k == "height":
+                    self.height = v
+                elif k == "x":
+                    self.x = v
+                elif k == "y":
+                    self.y = v
+
+    def __str__(self):
+        """override the str method to return a formated
+        string representation of the rectangle"""
+        return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}")
