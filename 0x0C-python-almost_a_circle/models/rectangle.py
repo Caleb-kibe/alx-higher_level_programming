@@ -17,11 +17,11 @@ class Rectangle(Base):
             TypeError: if x or y is not an int.
             ValueError: if x or y < 0.
         """
-        super().__init__(id)
         self.width = width
         self.height = height
         self.x = x
         self.y = y
+        super().__init__(id)
 
     @property
     def width(self):
@@ -31,7 +31,7 @@ class Rectangle(Base):
     @width.setter
     def width(self, value):
         """sets the width of the rectangle"""
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value <= 0:
             raise ValueError("width must be > 0")
@@ -40,12 +40,12 @@ class Rectangle(Base):
     @property
     def height(self):
         """get the height of the rectangle"""
-        return self.__width
+        return self.__height
 
     @height.setter
     def height(self, value):
         """set the height of the rectangle"""
-        if type(value) != int:
+        if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value <= 0:
             raise ValueError("height must be >= 0")
@@ -59,10 +59,10 @@ class Rectangle(Base):
     @x.setter
     def x(self, value):
         """sets the value of x"""
+        if not isinstance(value, int):
+            raise TypeError("x must be an integer")
         if value < 0:
             raise ValueError("x must be >= 0")
-        if type(value) != int:
-            raise TypeError("x must be an integer")
         self.__x = value
 
     @property
@@ -73,10 +73,10 @@ class Rectangle(Base):
     @y.setter
     def y(self, value):
         """sets the value of y"""
+        if not isinstance(value, int):
+            raise TypeError("y must be an integer")
         if value < 0:
             raise ValueError("y must be >= 0")
-        if type(value) != int:
-            raise TypeError("y must be an integer")
         self.__y = value
 
     def area(self):
@@ -152,4 +152,4 @@ class Rectangle(Base):
     def __str__(self):
         """override the str method to return a formated
         string representation of the rectangle"""
-        return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}")
+        return (f"[Rectangle] ({self.id) {self.x}/{self.y} - {self.width}/{self.height}")
