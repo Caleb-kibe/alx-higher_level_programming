@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""defines a baseclass Base"""
 import json
 import csv
 import turtle
