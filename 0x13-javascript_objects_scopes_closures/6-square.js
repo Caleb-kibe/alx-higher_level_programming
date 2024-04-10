@@ -1,3 +1,4 @@
+#!/usr/bin/node
 // Creates a class Square that inherits from class Square of 5-square.js
 module.exports = class Square extends require('./5-square.js') {
   charPrint (c) {
