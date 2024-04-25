@@ -11,7 +11,5 @@ status_code=$(echo "$response" | head -n 1 | cut -d ' ' -f2)
 
 if [[ "$status_code" -eq 200 ]]; then
 	body=$(echo "$response" | sed '/^$/d')
-	echo "Route $body"
-else
-  echo "Error: Status code is not 200 (Found: $status_code)"
+	echo "$body"
 fi
