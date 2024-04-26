@@ -1,15 +1,4 @@
 #!/bin/bash
-# Checks if the URL name is provided
-if [ $# -ne 1 ]; then
-	exit 1
-fi
-
-# Store the URL provided as an argument
-URL=$1
-
-# Send a request to the URL using curl and store the response body in a variable
-response=$(curl -s -o /dev/null -w "%{size_download}" "$URL")
-
-# Display the size of the response body in bytes
-echo "$response"
+# #  This script takes in a URL, sends a request to that URL, and displays the size of the body of the response
+curl -sI "$1" | awk '/Content-Length/ {print $2}'
 
